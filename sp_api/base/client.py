@@ -132,7 +132,8 @@ class Client(BaseClient):
                       data=json.dumps(data) if data and self.method in ('POST', 'PUT', 'PATCH') else None,
                       headers=headers or self.headers,
                       auth=self._sign_request(),
-                      proxies=self.proxies)
+                      proxies=self.proxies,
+                      timeout=30)
         return self._check_response(res, res_no_data, bulk)
 
     def _check_response(self, res, res_no_data: bool = False, bulk: bool = False) -> ApiResponse:
